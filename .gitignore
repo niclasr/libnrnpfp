@@ -50,3 +50,10 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# mk-configure
+_mkc_*
+*.op
+*.os
+pod2htmi.tmp
+pod2htmd.tmp
