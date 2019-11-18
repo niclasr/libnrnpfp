@@ -2,6 +2,7 @@
 MKC_FUNCLIBS= sendfile:sendfile
 
 LIB = sendfileportable
+INCS = sendfileportable.h
 
 SHLIB_MAJOR = 0
 
