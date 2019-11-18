@@ -2,5 +2,4 @@
 PATH.sfplib := ${.PARSEDIR:tA}
 
 DPINCDIRS += ${PATH.sfplib}
-DPLIBDIRS += ${PATH.sfplib}
-DPLDADD += sendfileportable
+LDFLAGS += ${PATH.sfplib}/libsendfileportable.a

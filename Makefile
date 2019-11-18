@@ -1,4 +1,5 @@
 
-SUBDIR = lib test
+LIBDEPS = lib:test/server
+SUBPRJ  = test/client
 
-.include <mkc.subdir.mk>
+.include <mkc.subprj.mk>
