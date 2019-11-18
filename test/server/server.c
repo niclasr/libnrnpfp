@@ -44,19 +44,18 @@ main(int argc, char *argv[])
   }
 
   struct sockaddr_in addrl;
-  addrl.sin_len = sizeof (struct sockaddr_in);
   addrl.sin_family = AF_INET;
   addrl.sin_port = htons(PORT);
   if (!inet_aton("127.0.0.1", &addrl.sin_addr)) {
     perror("inet_aton");
     return EXIT_FAILURE;
   }
-  
-  if (bind(s,(struct sockaddr*)&addrl, addrl.sin_len)) {
+
+  if (bind(s,(struct sockaddr*)&addrl, sizeof (struct sockaddr_in))) {
     perror("bind");
     return EXIT_FAILURE;
   }
-  
+
   if (listen(s,1)) {
     perror("listen");
     return EXIT_FAILURE;
@@ -68,7 +67,7 @@ main(int argc, char *argv[])
     close(s);
     return EXIT_FAILURE;
   }
-  
+
   off_t in_fd_size = lseek(in_fd, 0, SEEK_END);
   if (in_fd_size == -1) {
     perror("lseek");
@@ -78,7 +77,8 @@ main(int argc, char *argv[])
   }
 
   struct sockaddr_in addrc;
-  int conn = accept(s, (struct sockaddr *)&addrc, (socklen_t *)&addrc.sin_len);
+  socklen_t addrc_len = sizeof (struct sockaddr_in);
+  int conn = accept(s, (struct sockaddr *)&addrc, &addrc_len);
   if (conn == -1) {
     perror("accept");
     close(s);
@@ -119,8 +119,8 @@ main(int argc, char *argv[])
   if (close(in_fd)) {
     perror("close file");
     return EXIT_FAILURE;
-  }		     
- 
+  }
+
   return EXIT_SUCCESS;
 }
 

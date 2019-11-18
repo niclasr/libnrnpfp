@@ -37,14 +37,13 @@ main(int argc, char *argv[])
     usage();
   }
 
-  int s = socket(PF_INET, SOCK_STREAM, 0);
+  int s = socket(AF_INET, SOCK_STREAM, 0);
   if (s == -1) {
     perror("socket");
     return EXIT_FAILURE;
   }
 
   struct sockaddr_in addrl;
-  addrl.sin_len = sizeof (struct sockaddr_in);
   addrl.sin_family = AF_INET;
   addrl.sin_port = htons(PORT);
   if (!inet_aton("127.0.0.1", &addrl.sin_addr)) {
@@ -52,7 +51,7 @@ main(int argc, char *argv[])
     return EXIT_FAILURE;
   }
 
-  if (connect(s,(struct sockaddr*)&addrl, addrl.sin_len)){
+  if (connect(s,(struct sockaddr*)&addrl, sizeof (struct sockaddr_in))){
     perror("connect");
     return EXIT_FAILURE;
   }
@@ -65,7 +64,7 @@ main(int argc, char *argv[])
     shutdown(s, SHUT_RDWR);
     return EXIT_FAILURE;
   }
-  
+
   int rr;
   int wr;
   do {
@@ -84,7 +83,7 @@ main(int argc, char *argv[])
 	close(out_fd);
 	return EXIT_FAILURE;
       }
-    } 
+    }
   } while(rr);
 
   if (shutdown(s, SHUT_RDWR)) {
@@ -96,8 +95,8 @@ main(int argc, char *argv[])
   if (close(out_fd)) {
     perror("close");
     return EXIT_FAILURE;
-  }		     
- 
+  }
+
   return EXIT_SUCCESS;
 }
 
