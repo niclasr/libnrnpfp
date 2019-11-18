@@ -57,3 +57,6 @@ _mkc_*
 *.os
 pod2htmi.tmp
 pod2htmd.tmp
+
+#emacs
+*~
