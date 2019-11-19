@@ -3,5 +3,9 @@
 #define _CONFIG_H_
 
 #cmakedefine HAVE_HEADER_SYS_PARAM_H
+#cmakedefine HAVE_HEADER_SYS_SENDFILE_H
+
+#cmakedefine HAVE_PROTOTYPE_SENDFILE_ORG
+#cmakedefine HAVE_PROTOTYPE_SENDFILE_FBSD
 
 #endif
