@@ -46,11 +46,11 @@ sendfileportable(int s, int fd, off_t offset, size_t nbytes, size_t *sbytes)
 int
 do_sendfilep(int out_fd, int in_fd, off_t offset, size_t count, size_t *sbytes)
 {
-#if defined(HAVE_SYS_SENDFILE)
+#if defined(HAVE_PROTOTYPE_SENDFILE_ORG)
   ssize_t retval;
   off_t new_offset = offset;
-  retval = sendfile(out_fd, in_fd, new_offset, count);
-  
+  retval = sendfile(out_fd, in_fd, &new_offset, count);
+
   *sbytes = new_offset - offset;
   if (retval == -1){
     return -1;
@@ -58,7 +58,7 @@ do_sendfilep(int out_fd, int in_fd, off_t offset, size_t count, size_t *sbytes)
   return 0;
 #endif
 
-#if defined(HAVE_FREEBSD_SENDFILE)
+#if defined(HAVE_PROTOTYPE_SENDFILE_FBSD)
   if (count == 0) {
     *sbytes = 0;
     return 0;

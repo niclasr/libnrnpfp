@@ -1,6 +1,4 @@
 
-MKC_FUNCLIBS= sendfile:sendfile
-
 LIB = sendfileportable
 INCS = sendfileportable.h
 
