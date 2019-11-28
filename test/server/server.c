@@ -16,6 +16,7 @@
 
 #include <arpa/inet.h>
 #include <fcntl.h>
+#include <netinet/in.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/socket.h>
@@ -92,7 +93,7 @@ main(int argc, char *argv[])
     return EXIT_FAILURE;
   }
 
-  size_t sbytes;
+  off_t sbytes;
   if(sendfileportable(conn, in_fd, 0, in_fd_size, &sbytes)) {
     perror("sendfileportable");
     shutdown(conn, SHUT_RDWR);

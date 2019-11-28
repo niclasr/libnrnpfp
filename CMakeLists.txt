@@ -18,6 +18,7 @@ endif()
 
 if(BUILD_TESTS)
 add_library(sendfileportable-static STATIC lib/sendfileportable.c)
+target_compile_definitions(sendfileportable-static PRIVATE HAVE_HEADER_CONFIG_H)
 target_include_directories(sendfileportable-static INTERFACE
 $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/lib>)
 add_executable(server test/server/server.c)

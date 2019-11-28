@@ -35,16 +35,16 @@
 
 #include "sendfileportable.h"
 
-int do_sendfilep(int,int,off_t,size_t,size_t*);
+int do_sendfilep(int,int,off_t,size_t,off_t*);
 
 int
-sendfileportable(int s, int fd, off_t offset, size_t nbytes, size_t *sbytes)
+sendfileportable(int s, int fd, off_t offset, size_t nbytes, off_t *sbytes)
 {
   return do_sendfilep(s, fd, offset, nbytes, sbytes);
 }
 
 int
-do_sendfilep(int out_fd, int in_fd, off_t offset, size_t count, size_t *sbytes)
+do_sendfilep(int out_fd, int in_fd, off_t offset, size_t count, off_t *sbytes)
 {
 #if defined(HAVE_PROTOTYPE_SENDFILE_ORG)
   ssize_t retval;
