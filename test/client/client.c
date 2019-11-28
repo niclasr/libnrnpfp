@@ -24,7 +24,7 @@
 
 #define PORT 38000
 
-void usage(void);
+void usage(char *pname);
 
 int
 main(int argc, char *argv[])
@@ -32,9 +32,8 @@ main(int argc, char *argv[])
   char rbuf[1024];
   size_t rbuf_len = 1024;
 
-  setprogname(argv[0]);
   if (argc != 2) {
-    usage();
+    usage(argv[0]);
   }
 
   int s = socket(AF_INET, SOCK_STREAM, 0);
@@ -101,8 +100,8 @@ main(int argc, char *argv[])
 }
 
 void
-usage()
+usage(char *pname)
 {
-  (void)fprintf(stderr, "usage: %s filename\n", getprogname());
+  (void)fprintf(stderr, "usage: %s filename\n", pname);
   exit(EXIT_FAILURE);
 }
