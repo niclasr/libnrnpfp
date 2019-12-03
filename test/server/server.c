@@ -23,7 +23,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-#include <sendfileportable.h>
+#include <libnrnpfp.h>
 
 #define PORT 38000
 
@@ -94,7 +94,7 @@ main(int argc, char *argv[])
   }
 
   off_t sbytes;
-  if(sendfileportable(conn, in_fd, 0, in_fd_size, &sbytes)) {
+  if(nrnpfp_sendfile(conn, in_fd, 0, in_fd_size, &sbytes)) {
     perror("sendfileportable");
     shutdown(conn, SHUT_RDWR);
     close(conn);

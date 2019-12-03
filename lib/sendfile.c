@@ -33,18 +33,18 @@
 #include <sys/sendfile.h>
 #endif
 
-#include "sendfileportable.h"
+#include "libnrnpfp.h"
 
-int do_sendfilep(int,int,off_t,size_t,off_t*);
+int nrnpfp_do_sendfile(int,int,off_t,size_t,off_t*);
 
 int
-sendfileportable(int s, int fd, off_t offset, size_t nbytes, off_t *sbytes)
+nrnpfp_sendfile(int s, int fd, off_t offset, size_t nbytes, off_t *sbytes)
 {
-  return do_sendfilep(s, fd, offset, nbytes, sbytes);
+  return nrnpfp_do_sendfile(s, fd, offset, nbytes, sbytes);
 }
 
 int
-do_sendfilep(int out_fd, int in_fd, off_t offset, size_t count, off_t *sbytes)
+nrnpfp_do_sendfile(int out_fd, int in_fd, off_t offset, size_t count, off_t *sbytes)
 {
 #if defined(HAVE_PROTOTYPE_SENDFILE_ORG)
   ssize_t retval;

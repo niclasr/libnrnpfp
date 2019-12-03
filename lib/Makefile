@@ -1,6 +1,8 @@
 
-LIB = sendfileportable
-INCS = sendfileportable.h
+LIB = nrnpfp
+INCS = libnrnpfp.h
+
+SRCS = sendfile.c
 
 SHLIB_MAJOR = 0
 

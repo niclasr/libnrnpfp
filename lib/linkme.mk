@@ -1,5 +1,5 @@
 
-PATH.sfplib := ${.PARSEDIR:tA}
+PATH.libnrnpfp := ${.PARSEDIR:tA}
 
-DPINCDIRS += ${PATH.sfplib}
-LDFLAGS += ${PATH.sfplib}/libsendfileportable.a
+DPINCDIRS += ${PATH.libnrnpfp}
+LDFLAGS += ${PATH.libnrnpfp}/libnrnpfp.a
